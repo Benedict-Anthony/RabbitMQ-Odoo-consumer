@@ -113,37 +113,49 @@ odoorpc: Python library for connecting and interacting with Odoo ERP via XML-RPC
 Custom modules (utils.get_user, utils.logger) are used for specific functionality. 3. Class Overview<a name="class-overview"></a>
 Constructor<a name="constructor"></a>
 
+```python
 def **init**(self, url, queue) -> None:
-
+```
 Initializes the SalesOrderConsumer instance.
 url: RabbitMQ connection URL.
 queue: The name of the RabbitMQ queue to consume messages from.
 connect<a name="connect"></a>
 
+```python
 def create_channel(self):
+```
 Creates a channel on the established RabbitMQ connection.
 Returns the channel object if successful, or None if the connection is not established.
 start_consuming<a name="start-consuming"></a>
 
+```
 def start_consuming(self):
+```
+
 Starts consuming messages from the specified RabbitMQ queue.
 Creates a connection and channel if not already established.
 Handles keyboard interrupt to gracefully exit.
+```
 disconnect<a name="disconnect"></a>
+```
+```
 python
-Copy code
 def disconnect(self):
+```
 Closes the RabbitMQ connection.
 callback<a name="callback"></a>
 python
-Copy code
+
+```python
 def callback(self, ch, method, properties, body):
+```
+
 Callback function to process incoming messages.
 Parses JSON data from the message and calls create_sales_order method.
-create_sales_order<a name="create-sales-order"></a>
-python
-Copy code
+
+```python
 def create_sales_order(self, data):
+```
 Creates a sales order in Odoo ERP based on the received data.
 Data includes customer information and product details.
 Handles various exceptions and logs error messages.
